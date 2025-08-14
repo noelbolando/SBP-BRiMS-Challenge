@@ -15,6 +15,7 @@ turtles-own [
   infection-start          ;; Tick at which infection began
   infector-id              ;; ID of the agent that infected this turtle
   num-infected             ;; Number of agents this turtle has infected
+  masked?                  ;; Whether the agent is currently masked
 ]
 
 ;;;
@@ -55,6 +56,7 @@ to setup-turtles
     set num-infected 0
     set unique-id next-id
     set next-id next-id + 1
+    set masked? false
   ]
 end
 
@@ -77,10 +79,8 @@ to go
     ]
   ]
 
-  ask turtles with [state = "I"] [
-    infect-nearby
-  ]
-
+  update-mask-status
+  infect-susceptibles
   tick
 end
 
@@ -95,17 +95,62 @@ to move
   ]
 end
 
-to infect-nearby
+to update-mask-status
+  ask turtles [
+    let neighbor-count count turtles-on neighbors
+    ifelse neighbor-count >= 4 [
+      set masked? true
+    ] [
+      set masked? false
+    ]
+    update-appearance
+  ]
+end
+
+to update-appearance
+  ifelse masked? [
+    set shape "face masked person"
+  ] [
+    set shape "person"
+  ]
+  if state = "S" [ set color green ]
+  if state = "I" [ set color red ]
+  if state = "R" [ set color gray ]
+end
+
+to infect-susceptibles
   ask turtles with [state = "S"] [
     let nearby-patches neighbors
     let nearby-turtles turtles-on nearby-patches
-    let infected-neighbors count nearby-turtles with [state = "I"]
+    let infectors nearby-turtles with [state = "I"]
 
     let p infection-chance / 100
-    let infection-probability 1 - ((1 - p) ^ infected-neighbors)
+    let total-risk 0
+
+    ;; loop through each infector using 'agentset' with 'let' and 'ask'
+    let infector-list sort infectors
+    let i 0
+
+    while [i < length infector-list] [
+      let infector item i infector-list
+      let effective-p p
+      if [masked?] of infector [
+        set effective-p effective-p * 0.1
+      ]
+      set total-risk total-risk + effective-p
+      set i i + 1
+    ]
+
+    let n length infector-list
+    let safe-n (max list n 1)
+    let base-risk 1 - (total-risk / safe-n)
+    let infection-probability 1 - (base-risk ^ n)
+
+    if masked? [
+      set infection-probability 1 - ((1 - (0.1 * infection-probability)) ^ 1)
+    ]
 
     if random-float 1.0 < infection-probability [
-      let infectors nearby-turtles with [state = "I"]
       let source one-of infectors
       become-infected source
       ask source [ set num-infected num-infected + 1 ]
@@ -125,6 +170,7 @@ end
 to recover
   set state "R"
   set color gray
+  update-appearance
 end
 
 ;;;
@@ -143,9 +189,9 @@ end
 to export-results
   file-close-all
   file-open output-file
-  file-print "unique-id,state,infection-start,infector-id,num-infected"
+  file-print "unique-id,state,infection-start,infector-id,num-infected,masked"
   ask turtles [
-    file-print (word unique-id "," state "," infection-start "," infector-id "," num-infected)
+    file-print (word "unique-id," "state," "infection-start," "infector-id," "num-infected," masked?)
   ]
   file-print ""
   file-print (word "R0:," r0)
@@ -169,13 +215,13 @@ to-report count-recovered
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-210
+588
 10
-647
-448
+1307
+730
 -1
 -1
-13.0
+21.55
 1
 10
 1
@@ -230,10 +276,10 @@ NIL
 1
 
 PLOT
-657
-10
-1160
-360
+16
+55
+580
+456
 SIR curve
 ticks
 state counts
@@ -248,24 +294,6 @@ PENS
 "Susceptible" 1.0 0 -14439633 true "" "plot count turtles with [state = \"S\"]"
 "Infected" 1.0 0 -2674135 true "" "plot count turtles with [state = \"I\"]"
 "Recovered" 1.0 0 -7500403 true "" "plot count turtles with [state = \"R\"]"
-
-PLOT
-657
-370
-1161
-638
-R0 Over Runs
-NIL
-NIL
-0.0
-100.0
-0.0
-10.0
-true
-false
-"" "set-current-plot \"R0 Over Runs\"\nset-current-plot-pen \"R0\"\nplot r0"
-PENS
-"R0" 1.0 0 -817084 true "" "plot r0"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -395,6 +423,16 @@ Circle -7500403 true true 8 8 285
 Circle -16777216 true false 60 75 60
 Circle -16777216 true false 180 75 60
 Polygon -16777216 true false 150 255 90 239 62 213 47 191 67 179 90 203 109 218 150 225 192 218 210 203 227 181 251 194 236 217 212 240
+
+face masked person
+false
+0
+Circle -7500403 true true 110 5 80
+Polygon -7500403 true true 105 90 120 195 90 285 105 300 135 300 150 225 165 300 195 300 210 285 180 195 195 90
+Rectangle -7500403 true true 127 79 172 94
+Polygon -7500403 true true 195 90 240 150 225 180 165 105
+Polygon -7500403 true true 105 90 60 150 75 180 135 105
+Polygon -1 true false 105 45 195 45 105 45 195 45 180 75 120 75 105 45 195 45
 
 face neutral
 false
