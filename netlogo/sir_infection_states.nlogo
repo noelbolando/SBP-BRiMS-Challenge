@@ -41,7 +41,10 @@ to setup-globals
   set total-infections 0
   set initial-infected 5
   set r0 0
-  set output-file (word "sir_output_run_" new-seed ".csv")
+  set output-file (word "sir_tick_log_run_" new-seed ".csv")
+  file-open output-file
+  file-print "tick,unique-id,state,infection-start,infector-id,num-infected,masked"
+  file-close
 end
 
 to setup-turtles
@@ -60,6 +63,7 @@ to setup-turtles
   ]
 end
 
+
 ;;;
 ;;; GO PROCEDURES
 ;;;
@@ -67,7 +71,9 @@ end
 to go
   if not any? turtles with [state = "I"] [
     calculate-r0
-    export-results
+    file-open output-file
+    file-print "END"
+    file-close
     stop
   ]
 
@@ -81,6 +87,12 @@ to go
 
   update-mask-status
   infect-susceptibles
+
+  ;; log agent states per tick
+  file-open output-file
+  log-tick-data
+  file-close
+
   tick
 end
 
@@ -186,16 +198,18 @@ end
 ;;; EXPORT
 ;;;
 
-to export-results
-  file-close-all
-  file-open output-file
-  file-print "unique-id,state,infection-start,infector-id,num-infected,masked"
-  ask turtles [
-    file-print (word "unique-id," "state," "infection-start," "infector-id," "num-infected," masked?)
+to log-tick-data
+  foreach sort turtles [
+    x ->
+      let uid [unique-id] of x
+      let s [state] of x
+      let start [infection-start] of x
+      let source [infector-id] of x
+      let infected [num-infected] of x
+      let is-masked [masked?] of x
+
+      file-print (word uid "," s "," start "," source "," infected "," is-masked "," ticks)
   ]
-  file-print ""
-  file-print (word "R0:," r0)
-  file-close
 end
 
 ;;;
