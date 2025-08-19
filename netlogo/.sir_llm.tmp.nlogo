@@ -56,7 +56,7 @@ to setup-globals
   set recovery-probability 1
   set next-id 0
   set total-infections 0
-  set initial-infected 5
+  set initial-infected 1
   set r0 0
   set output-file (word "sir_tick_log_run_" new-seed ".csv")
   file-open output-file
@@ -65,7 +65,7 @@ to setup-globals
 end
 
 to setup-turtles
-  create-turtles 200 [
+  create-turtles 100 [
     let spawn-patch one-of patches with [not home?]   ;; to not spawn in home
     move-to spawn-patch
     set shape "person"
@@ -111,8 +111,10 @@ to go
   ;; log agent states per tick
   file-open output-file
   log-tick-data
-
   file-close
+
+  ;; export agent states to JSON
+  export-llm-agent-data
 
   tick
 end
@@ -278,20 +280,26 @@ to export-llm-agent-data
 
   let agents sort turtles
   let count-agents length agents
+  let index 0
 
-  (foreach agents n-values count-agents [?] [
-    agent index ->
+  foreach agents [
+    agent ->
       let uid [unique-id] of agent
-      let st [state] of agent
+      let agent-state [state] of agent
       let masked [masked?] of agent
-      let hx home? of patch-here
       let x [xcor] of agent
       let y [ycor] of agent
+
+      ;; Safely get home? from patch under agent
+      let hx false
+      ask agent [
+        set hx [home?] of patch-here
+      ]
 
       let agent-json (word
         "  {"
         "\"unique_id\": " uid ", "
-        "\"state\": \"" st "\", "
+        "\"state\": \"" agent-state "\", "
         "\"masked\": " masked ", "
         "\"home\": " hx ", "
         "\"x\": " x ", "
@@ -301,13 +309,13 @@ to export-llm-agent-data
       )
 
       file-print agent-json
-      if index != count-agents - 1 [ file-print "," ]
-  ])
+      set index index + 1
+      if index < count-agents [ file-print "," ]
+  ]
 
   file-print "]"
   file-close
 end
-
 
 ;;;
 ;;; REPORTERS
