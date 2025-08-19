@@ -29,13 +29,9 @@ to setup
   setup-turtles
   reset-ticks
   ask n-of initial-infected turtles with [state = "S"] [
-    become-infected self
-  ]
+  become-infected nobody
+ ]
   reset-ticks
-  file-close-all
-  file-open output-file
-
-  file-close
 end
 
 to setup-globals
@@ -47,7 +43,7 @@ to setup-globals
   set r0 0
   set output-file (word "sir_tick_log_run_" new-seed ".csv")
   file-open output-file
-  file-print "unique-id,state,infection-start,infector-id,num-infected,masked,tick"
+  file-print "tick,unique-id,state,infection-start,infector-id,num-infected,masked"
   file-close
 end
 
@@ -73,7 +69,7 @@ end
 ;;;
 
 to go
-  if not any? turtles with [state = "I"] [
+  if not any? turtles with [member? state ["IA" "IS"]] [
     calculate-r0
     file-open output-file
     file-print "END"
@@ -83,7 +79,7 @@ to go
 
   ask turtles [
     move
-    if state = "I" [
+    if member? state ["IA" "IS"] [
       set time-infected time-infected + 1
       if random-float 100 < recovery-probability [ recover ]
     ]
@@ -130,7 +126,8 @@ to update-appearance
     set shape "person"
   ]
   if state = "S" [ set color green ]
-  if state = "I" [ set color red ]
+  if member? state ["IA"] [ set color yellow ]
+  if member? state ["IS"] [ set color red ]
   if state = "R" [ set color gray ]
 end
 
@@ -138,7 +135,7 @@ to infect-susceptibles
   ask turtles with [state = "S"] [
     let nearby-patches neighbors
     let nearby-turtles turtles-on nearby-patches
-    let infectors nearby-turtles with [state = "I"]
+    let infectors nearby-turtles with [member? state ["IA" "IS"]]
 
     let p infection-chance / 100
     let total-risk 0
@@ -175,11 +172,19 @@ to infect-susceptibles
 end
 
 to become-infected [source]
-  set state "I"
-  set color red
+  ifelse random-float 1.0 < 0.5 [
+    set state "IA"
+    set color yellow
+  ] [
+    set state "IS"
+    set color red
+  ]
   set time-infected 0
   set infection-start ticks
-  set infector-id [unique-id] of source
+  if source != nobody [
+    set infector-id [unique-id] of source
+    ask source [ set num-infected num-infected + 1 ]
+  ]
   set total-infections total-infections + 1
 end
 
@@ -225,7 +230,7 @@ to-report count-susceptible
 end
 
 to-report count-infected
-  report count turtles with [state = "I"]
+  report count turtles with [member? state ["IA" "IS"]]
 end
 
 to-report count-recovered
@@ -307,11 +312,12 @@ state counts
 10.0
 true
 false
-"" "set-current-plot \"SIR Curve\"\nset-current-plot-pen \"Susceptible\"\nplot count turtles with [state = \"S\"]\n\nset-current-plot-pen \"Infected\"\nplot count turtles with [state = \"I\"]\n\nset-current-plot-pen \"Recovered\"\nplot count turtles with [state = \"R\"]"
+"" "set-current-plot \"SIR Curve\"\nset-current-plot-pen \"Susceptible\"\nplot count turtles with [state = \"S\"]\n\nset-current-plot-pen \"Infected Symptomatic\"\nplot count turtles with [state = \"IS\"]\n\nset-current-plot-pen \"Infected Asymptomatic\"\nplot count turtles with [state = \"IA\"]\n\nset-current-plot-pen \"Recovered\"\nplot count turtles with [state = \"R\"]"
 PENS
 "Susceptible" 1.0 0 -14439633 true "" "plot count turtles with [state = \"S\"]"
-"Infected" 1.0 0 -2674135 true "" "plot count turtles with [state = \"I\"]"
+"Infected Symptomatic" 1.0 0 -2674135 true "" "plot count turtles with [state = \"IS\"]"
 "Recovered" 1.0 0 -7500403 true "" "plot count turtles with [state = \"R\"]"
+"Infected Asymptomatic" 1.0 0 -1184463 true "" "plot count turtles with [state = \"IA\"]"
 
 @#$#@#$#@
 ## WHAT IS IT?
