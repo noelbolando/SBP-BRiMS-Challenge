@@ -1,72 +1,291 @@
 globals [
-  infection-chance   ;; probability of infection on contact
-  recovery-time      ;; ticks until recovery
+  infection-chance         ;; % chance of transmission upon contact
+  recovery-probability     ;; % chance of recovering at each tick
+  next-id                  ;; counter to assign unique IDs
+  total-infections         ;; total number of infections (excluding initial ones)
+  initial-infected         ;; number of agents initially infected
+  r0                       ;; basic reproduction number (estimated)
+  output-file              ;; filename for CSV output
 ]
 
 turtles-own [
-  state              ;; "S", "I", or "R"
-  time-infected      ;; how long the agent's been infected
+  unique-id                ;; Unique identifier for each agent
+  state                    ;; "S" (susceptible), "I" (infected), or "R" (recovered), "IA", "IS"
+  time-infected            ;; How long the turtle has been infected
+  infection-start          ;; Tick at which infection began
+  infector-id              ;; ID of the agent that infected this turtle
+  num-infected             ;; Number of agents this turtle has infected
+  masked?                  ;; Whether the agent is currently masked
 ]
+
+patches-own [
+  home?  ;; true if patch is part of the home zone
+]
+
+;;;
+;;; SETUP
+;;;
 
 to setup
   clear-all
-  set-default-shape turtles "person"
-  create-turtles 200 [
-    setxy random-xcor random-ycor
-    set state "S"
-    set color blue
-  ]
-  ask n-of 5 turtles [ become-infected ]  ;; seed initial infections
-  set infection-chance 0.2
-  set recovery-time 30
+  random-seed new-seed
+  setup-home-zone
+  setup-globals
+  setup-turtles
+  reset-ticks
+  ask n-of initial-infected turtles with [state = "S"] [
+  become-infected nobody
+ ]
   reset-ticks
 end
 
+to setup-home-zone
+  ask patches [
+  set home? (pxcor <= min-pxcor + 7) and (pycor <= min-pycor + 7)
+  if home? [ set pcolor gray ]
+]
+end
+
+to setup-globals
+  set infection-chance 50
+  set recovery-probability 1
+  set next-id 0
+  set total-infections 0
+  set initial-infected 5
+  set r0 0
+  set output-file (word "sir_tick_log_run_" new-seed ".csv")
+  file-open output-file
+  file-print "tick,unique-id,state,infection-start,infector-id,num-infected,masked"
+  file-close
+end
+
+to setup-turtles
+  create-turtles 200 [
+    let spawn-patch one-of patches with [not home?]   ;; to not spawn in home
+    move-to spawn-patch
+    set shape "person"
+    set state "S"
+    set color green
+    set time-infected 0
+    set infection-start -1
+    set infector-id -1
+    set num-infected 0
+    set unique-id next-id
+    set next-id next-id + 1
+    set masked? false
+  ]
+end
+
+
+;;;
+;;; GO PROCEDURES
+;;;
+
 to go
+  if not any? turtles with [member? state ["IA" "IS"]] [
+    calculate-r0
+    file-open output-file
+    file-print "END"
+    file-close
+    stop
+  ]
+
   ask turtles [
     move
-    if state = "I" [
-      infect-others
+    if member? state ["IA" "IS"] [
       set time-infected time-infected + 1
-      if time-infected > recovery-time [ recover ]
+      if random-float 100 < recovery-probability [ recover ]
     ]
   ]
+
+  send-symptomatic-home
+
+  update-mask-status
+  infect-susceptibles
+
+  ;; log agent states per tick
+  file-open output-file
+  log-tick-data
+  file-close
+
   tick
 end
 
+;;;
+;;; STATE TRANSITIONS
+;;;
+
 to move
-  rt random 360
-  fd 1
+  let target-patch one-of neighbors with [
+    ;; Only allow movement:
+    ;; - into home if state = "IS"
+    ;; - or if patch is not home
+    (home? and [state] of myself = "IS") or (not home?)
+  ]
+
+  if target-patch != nobody [
+    move-to target-patch
+  ]
 end
 
-to infect-others
-  let nearby-susceptibles turtles in-radius 1 with [state = "S"]
-  ask nearby-susceptibles [
-    if random-float 1 < infection-chance [
-      become-infected
+to update-mask-status
+  ask turtles [
+    let neighbor-count count turtles-on neighbors
+    ifelse neighbor-count >= 4 [
+      set masked? true
+    ] [
+      set masked? false
+    ]
+    update-appearance
+  ]
+end
+
+to update-appearance
+  ifelse masked? [
+    set shape "face masked person"
+  ] [
+    set shape "person"
+  ]
+  if state = "S" [ set color green ]
+  if member? state ["IA"] [ set color yellow ]
+  if member? state ["IS"] [ set color red ]
+  if state = "R" [ set color gray ]
+end
+
+to infect-susceptibles
+  ask turtles with [state = "S" and not home?] [
+    let nearby-patches neighbors
+    let nearby-turtles turtles-on nearby-patches
+    let infectors nearby-turtles with [member? state ["IA" "IS"]and not home?]
+
+    let p infection-chance / 100
+    let total-risk 0
+
+    let infector-list sort infectors
+    let i 0
+
+    while [i < length infector-list] [
+      let infector item i infector-list
+      let effective-p p
+      if [masked?] of infector [
+        set effective-p effective-p * 0.1
+      ]
+      set total-risk total-risk + effective-p
+      set i i + 1
+    ]
+
+    let n length infector-list
+    let safe-n (max list n 1)
+    let base-risk 1 - (total-risk / safe-n)
+    let infection-probability 1 - (base-risk ^ n)
+
+    if masked? [
+      set infection-probability 1 - ((1 - (0.1 * infection-probability)) ^ 1)
+    ]
+
+    if random-float 1.0 < infection-probability [
+      let source one-of infectors
+      become-infected source
+      ask source [ set num-infected num-infected + 1 ]
     ]
   ]
 end
 
-to become-infected
-  set state "I"
-  set color red
+to become-infected [source]
+  ifelse random-float 1.0 < 0.5 [
+    set state "IA"
+    set color yellow
+  ] [
+    set state "IS"
+    set color red
+  ]
   set time-infected 0
+  set infection-start ticks
+  if source != nobody [
+    set infector-id [unique-id] of source
+    ask source [ set num-infected num-infected + 1 ]
+  ]
+  set total-infections total-infections + 1
+end
+
+to send-symptomatic-home
+  ask turtles with [state = "IS" and not home?] [
+    ;; pick a random patch within home zone (bottom left 8x8)
+    let home-patch one-of patches with [
+      pxcor >= min-pxcor and pxcor < (min-pxcor + 8) and
+      pycor >= min-pycor and pycor < (min-pycor + 8)
+      and not any? turtles-here
+    ]
+    if home-patch != nobody [
+      move-to home-patch
+    ]
+  ]
 end
 
 to recover
   set state "R"
   set color gray
+  update-appearance
+  ;; Try to exit home zone
+  if [home?] of patch-here [
+    let exit-spot one-of patches with [not home? and not any? turtles-here]
+    if exit-spot != nobody [
+      move-to exit-spot
+  ]
+]
+end
+
+;;;
+;;; CALCULATE R0
+;;;
+
+to calculate-r0
+  if total-infections = 0 [ set r0 0 stop ]
+  set r0 total-infections / initial-infected
+end
+
+;;;
+;;; EXPORT
+;;;
+
+to log-tick-data
+  foreach sort turtles [
+    x ->
+      let uid [unique-id] of x
+      let s [state] of x
+      let start [infection-start] of x
+      let source [infector-id] of x
+      let infected [num-infected] of x
+      let is-masked [masked?] of x
+
+      file-print (word uid "," s "," start "," source "," infected "," is-masked "," ticks)
+  ]
+end
+
+;;;
+;;; REPORTERS
+;;;
+
+to-report count-susceptible
+  report count turtles with [state = "S"]
+end
+
+to-report count-infected
+  report count turtles with [member? state ["IA" "IS"]]
+end
+
+to-report count-recovered
+  report count turtles with [state = "R"]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-124
+659
 10
-561
-448
+1301
+653
 -1
 -1
-13.0
+19.21212121212121
 1
 10
 1
@@ -87,13 +306,13 @@ ticks
 30.0
 
 BUTTON
-34
-32
-100
-65
-setup
-setup
-NIL
+92
+11
+159
+45
+go
+go
+T
 1
 T
 OBSERVER
@@ -104,13 +323,13 @@ NIL
 1
 
 BUTTON
-35
-80
-102
-113
-go
-go
-T
+17
+11
+83
+44
+setup
+setup
+NIL
 1
 T
 OBSERVER
@@ -121,24 +340,25 @@ NIL
 1
 
 PLOT
-575
-25
-1067
-318
-SIR Curve
+16
+55
+647
+456
+SIR curve
 ticks
-state count
+state counts
 0.0
 10.0
 0.0
 10.0
 true
-false
-"" "set-current-plot \"SIR Curve\"\nset-current-plot-pen \"Susceptible\"\nplot count turtles with [state = \"S\"]\nset-current-plot-pen \"Infected\"\nplot count turtles with [state = \"I\"]\nset-current-plot-pen \"Recovered\"\nplot count turtles with [state = \"R\"]"
+true
+"" "set-current-plot \"SIR Curve\"\nset-current-plot-pen \"Susceptible\"\nplot count turtles with [state = \"S\"]\n\nset-current-plot-pen \"Infected Symptomatic\"\nplot count turtles with [state = \"IS\"]\n\nset-current-plot-pen \"Infected Asymptomatic\"\nplot count turtles with [state = \"IA\"]\n\nset-current-plot-pen \"Recovered\"\nplot count turtles with [state = \"R\"]"
 PENS
-"Susceptible" 1.0 0 -14070903 true "" "plot count turtles with [state = \"S\"]"
-"Infected" 1.0 0 -2674135 true "" "plot count turtles with [state = \"I\"]"
+"Susceptible" 1.0 0 -14439633 true "" "plot count turtles with [state = \"S\"]"
+"Infected Symptomatic" 1.0 0 -2674135 true "" "plot count turtles with [state = \"IS\"]"
 "Recovered" 1.0 0 -7500403 true "" "plot count turtles with [state = \"R\"]"
+"Infected Asymptomatic" 1.0 0 -1184463 true "" "plot count turtles with [state = \"IA\"]"
 
 @#$#@#$#@
 ## WHAT IS IT?
@@ -268,6 +488,16 @@ Circle -7500403 true true 8 8 285
 Circle -16777216 true false 60 75 60
 Circle -16777216 true false 180 75 60
 Polygon -16777216 true false 150 255 90 239 62 213 47 191 67 179 90 203 109 218 150 225 192 218 210 203 227 181 251 194 236 217 212 240
+
+face masked person
+false
+0
+Circle -7500403 true true 110 5 80
+Polygon -7500403 true true 105 90 120 195 90 285 105 300 135 300 150 225 165 300 195 300 210 285 180 195 195 90
+Rectangle -7500403 true true 127 79 172 94
+Polygon -7500403 true true 195 90 240 150 225 180 165 105
+Polygon -7500403 true true 105 90 60 150 75 180 135 105
+Polygon -1 true false 105 45 195 45 105 45 195 45 180 75 120 75 105 45 195 45
 
 face neutral
 false
