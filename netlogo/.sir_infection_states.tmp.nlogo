@@ -18,6 +18,10 @@ turtles-own [
   masked?                  ;; Whether the agent is currently masked
 ]
 
+patches-own [
+  home?  ;; true if patch is part of the home zone
+]
+
 ;;;
 ;;; SETUP
 ;;;
@@ -25,6 +29,7 @@ turtles-own [
 to setup
   clear-all
   random-seed new-seed
+  setup-home-zone
   setup-globals
   setup-turtles
   reset-ticks
@@ -32,6 +37,13 @@ to setup
   become-infected nobody
  ]
   reset-ticks
+end
+
+to setup-home-zone
+  ask patches [
+  set home? (pxcor <= min-pxcor + 7) and (pycor <= min-pycor + 7)
+  if home? [ set pcolor gray ]
+]
 end
 
 to setup-globals
@@ -49,7 +61,8 @@ end
 
 to setup-turtles
   create-turtles 200 [
-    setxy random-xcor random-ycor
+    let spawn-patch one-of patches with [not home?]   ;; to not spawn in home
+    move-to spawn-patch
     set shape "person"
     set state "S"
     set color green
@@ -85,6 +98,8 @@ to go
     ]
   ]
 
+  send-symptomatic-home
+
   update-mask-status
   infect-susceptibles
 
@@ -101,7 +116,13 @@ end
 ;;;
 
 to move
-  let target-patch one-of neighbors with [not any? turtles-here]
+  let target-patch one-of neighbors with [
+    ;; Only allow movement:
+    ;; - into home if state = "IS"
+    ;; - or if patch is not home
+    (home? and [state] of myself = "IS") or (not home?)
+  ]
+
   if target-patch != nobody [
     move-to target-patch
   ]
@@ -132,10 +153,10 @@ to update-appearance
 end
 
 to infect-susceptibles
-  ask turtles with [state = "S"] [
+  ask turtles with [state = "S" and not home?] [
     let nearby-patches neighbors
     let nearby-turtles turtles-on nearby-patches
-    let infectors nearby-turtles with [member? state ["IA" "IS"]]
+    let infectors nearby-turtles with [member? state ["IA" "IS"]a]
 
     let p infection-chance / 100
     let total-risk 0
@@ -188,10 +209,31 @@ to become-infected [source]
   set total-infections total-infections + 1
 end
 
+to send-symptomatic-home
+  ask turtles with [state = "IS" and not home?] [
+    ;; pick a random patch within home zone (bottom left 8x8)
+    let home-patch one-of patches with [
+      pxcor >= min-pxcor and pxcor < (min-pxcor + 8) and
+      pycor >= min-pycor and pycor < (min-pycor + 8)
+      and not any? turtles-here
+    ]
+    if home-patch != nobody [
+      move-to home-patch
+    ]
+  ]
+end
+
 to recover
   set state "R"
   set color gray
   update-appearance
+  ;; Try to exit home zone
+  if [home?] of patch-here [
+    let exit-spot one-of patches with [not home? and not any? turtles-here]
+    if exit-spot != nobody [
+      move-to exit-spot
+  ]
+]
 end
 
 ;;;
@@ -238,13 +280,13 @@ to-report count-recovered
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-588
+659
 10
-1307
-730
+1301
+653
 -1
 -1
-21.55
+19.21212121212121
 1
 10
 1
@@ -301,7 +343,7 @@ NIL
 PLOT
 16
 55
-580
+647
 456
 SIR curve
 ticks
@@ -311,7 +353,7 @@ state counts
 0.0
 10.0
 true
-false
+true
 "" "set-current-plot \"SIR Curve\"\nset-current-plot-pen \"Susceptible\"\nplot count turtles with [state = \"S\"]\n\nset-current-plot-pen \"Infected Symptomatic\"\nplot count turtles with [state = \"IS\"]\n\nset-current-plot-pen \"Infected Asymptomatic\"\nplot count turtles with [state = \"IA\"]\n\nset-current-plot-pen \"Recovered\"\nplot count turtles with [state = \"R\"]"
 PENS
 "Susceptible" 1.0 0 -14439633 true "" "plot count turtles with [state = \"S\"]"
