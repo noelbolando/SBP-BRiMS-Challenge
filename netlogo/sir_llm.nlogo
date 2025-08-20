@@ -1,7 +1,9 @@
 ;; SIRGPT - LLM agents only
 ;; Author: Noel C. Boland - 2025
 
-extensions [ py ]
+extensions [
+   py
+]
 
 globals [
   infection-chance         ;; % chance of transmission upon contact
@@ -21,6 +23,7 @@ turtles-own [
   infector-id              ;; ID of the agent that infected this turtle
   num-infected             ;; Number of agents this turtle has infected
   masked?                  ;; Whether the agent is currently masked
+  action-decided           ;; stores what the LLM told the agent to do
 ]
 
 patches-own [
@@ -52,8 +55,8 @@ to setup-home-zone
 end
 
 to setup-globals
-  set infection-chance 50
-  set recovery-probability 1
+  set infection-chance 50          ;; 50% chance
+  set recovery-probability 1       ;; 1% chance
   set next-id 0
   set total-infections 0
   set initial-infected 2
@@ -88,24 +91,43 @@ end
 
 to go
   if not any? turtles with [member? state ["IA" "IS"]] [
-    calculate-r0
     file-open output-file
     file-print "END"
     file-close
     stop
   ]
 
+  import-llm-decisions
+
   ask turtles [
-    move
+    ;; Execute LLM-decided behavior
+    if action-decided = "move" [
+      move
+    ]
+    if action-decided = "stay" [
+      ;; Do nothing (intentionally)
+    ]
+
+    ;; Update mask status based on LLM
+    if action-decided = "mask on" [
+      set masked? true
+    ]
+    if action-decided = "mask off" [
+      set masked? false
+    ]
+
+    ;; Infection logic
     if member? state ["IA" "IS"] [
       set time-infected time-infected + 1
-      if random-float 100 < recovery-probability [ recover ]
+      if random-float 100 < recovery-probability [
+        recover
+      ]
     ]
+
+    update-appearance
   ]
 
   send-symptomatic-home
-
-  update-mask-status
   infect-susceptibles
 
   ;; log agent states per tick
@@ -113,7 +135,7 @@ to go
   log-tick-data
   file-close
 
-  ;; export agent states to JSON
+  ;; export agent state for next LLM round
   export-llm-agent-data
 
   tick
@@ -124,15 +146,31 @@ end
 ;;;
 
 to move
-  let target-patch one-of neighbors with [
-    ;; Only allow movement:
-    ;; - into home if state = "IS"
-    ;; - or if patch is not home
-    (home? and [state] of myself = "IS") or (not home?)
+  ;; Handle movement decisions
+  if action-decided = "move" [
+    let target one-of neighbors with [
+      ;; allow into home only if IS, otherwise stay out
+      (home? and [state] of myself = "IS") or (not home?)
+    ]
+    if target != nobody [
+      move-to target
+    ]
   ]
 
-  if target-patch != nobody [
-    move-to target-patch
+  ;; Stay means do nothing (especially for IS at home)
+  if action-decided = "stay" [
+    ;; no-op
+  ]
+
+  ;; Masking logic
+  if action-decided = "mask on" [
+    set masked? true
+    update-appearance
+  ]
+
+  if action-decided = "mask off" [
+    set masked? false
+    update-appearance
   ]
 end
 
@@ -244,15 +282,6 @@ to recover
 end
 
 ;;;
-;;; CALCULATE R0
-;;;
-
-to calculate-r0
-  if total-infections = 0 [ set r0 0 stop ]
-  set r0 total-infections / initial-infected
-end
-
-;;;
 ;;; EXPORT
 ;;;
 
@@ -320,9 +349,36 @@ to export-llm-agent-data
 end
 
 ;;;
+;;; Import LLM Decisions
+;;;
+to import-llm-decisions
+  let file-name (word "decisions/decisions_tick_" ticks ".json")
+  if file-exists? file-name [
+    file-open file-name
+
+    ;; skip the opening bracket [
+    let line file-read-line
+
+    while [not file-at-end?] [
+      let llm-line file-read-line
+      if llm-line != "]" [
+        ;; Clean line (remove trailing comma or extra spaces)
+        if last llm-line = "," [ set llm-line substring llm-line 0 (length llm-line - 1) ]
+        let uid extract-number llm-line "unique_id"
+        let action extract-string llm-line "action"
+
+        ask turtles with [unique-id = uid] [
+          set action-decided action
+        ]
+      ]
+    ]
+    file-close
+  ]
+end
+
+;;;
 ;;; REPORTERS
 ;;;
-
 to-report count-susceptible
   report count turtles with [state = "S"]
 end
@@ -333,6 +389,33 @@ end
 
 to-report count-recovered
   report count turtles with [state = "R"]
+end
+
+to-report extract-number [line key]
+  let tag (word "\"" key "\": ")
+  let start position tag line
+  if start = false [ report -1 ]
+  set start start + length tag
+  let extract-stop find-comma-or-end line start
+  report read-from-string substring line start extract-stop
+end
+
+to-report extract-string [line key]
+  let tag (word "\"" key "\": \"")
+  let start position tag line
+  if start = false [ report "" ]
+  set start start + length tag
+  report substring line start (start + 5)
+end
+
+to-report find-comma-or-end [line start]
+  let line-rest substring line start (length line)
+  let comma-pos position "," line-rest
+  ifelse comma-pos = false [
+    report length line
+  ] [
+    report start + comma-pos
+  ]
 end
 @#$#@#$#@
 GRAPHICS-WINDOW

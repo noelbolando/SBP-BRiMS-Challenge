@@ -1,3 +1,6 @@
+;; SIR NetLogo
+;; Author: Noel C. Boland - 2025
+
 globals [
   infection-chance         ;; % chance of transmission upon contact
   recovery-probability     ;; % chance of recovering at each tick
@@ -41,7 +44,7 @@ end
 
 to setup-home-zone
   ask patches [
-  set home? (pxcor <= min-pxcor + 7) and (pycor <= min-pycor + 7)
+  set home? (pxcor <= min-pxcor + 4) and (pycor <= min-pycor + 4)
   if home? [ set pcolor gray ]
 ]
 end
@@ -51,7 +54,7 @@ to setup-globals
   set recovery-probability 1
   set next-id 0
   set total-infections 0
-  set initial-infected 5
+  set initial-infected 2
   set r0 0
   set output-file (word "sir_tick_log_run_" new-seed ".csv")
   file-open output-file
@@ -60,7 +63,7 @@ to setup-globals
 end
 
 to setup-turtles
-  create-turtles 200 [
+  create-turtles 50 [
     let spawn-patch one-of patches with [not home?]   ;; to not spawn in home
     move-to spawn-patch
     set shape "person"
@@ -281,11 +284,11 @@ end
 GRAPHICS-WINDOW
 659
 10
-1301
-653
+1104
+456
 -1
 -1
-19.21212121212121
+25.71
 1
 10
 1
@@ -295,10 +298,10 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+-8
+8
+-8
+8
 0
 0
 1
