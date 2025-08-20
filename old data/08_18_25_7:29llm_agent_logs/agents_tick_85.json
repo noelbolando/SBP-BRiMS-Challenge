@@ -1,0 +1,201 @@
+[
+  {"unique_id": 1, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": -8, "y": 5, "tick": 85}
+,
+  {"unique_id": 19, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 0, "y": -1, "tick": 85}
+,
+  {"unique_id": 32, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -8, "y": -1, "tick": 85}
+,
+  {"unique_id": 96, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": -1, "y": 4, "tick": 85}
+,
+  {"unique_id": 90, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": -2, "y": -4, "tick": 85}
+,
+  {"unique_id": 62, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 6, "y": -9, "tick": 85}
+,
+  {"unique_id": 8, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 8, "y": 3, "tick": 85}
+,
+  {"unique_id": 39, "state": "IS", "neighbor_count": 3, "masked": false, "home": true, "x": -10, "y": -9, "tick": 85}
+,
+  {"unique_id": 43, "state": "IS", "neighbor_count": 8, "masked": true, "home": true, "x": -7, "y": -6, "tick": 85}
+,
+  {"unique_id": 23, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -8, "y": 10, "tick": 85}
+,
+  {"unique_id": 71, "state": "R", "neighbor_count": 4, "masked": true, "home": false, "x": 1, "y": -6, "tick": 85}
+,
+  {"unique_id": 79, "state": "IS", "neighbor_count": 3, "masked": false, "home": true, "x": -10, "y": -6, "tick": 85}
+,
+  {"unique_id": 0, "state": "IS", "neighbor_count": 2, "masked": false, "home": true, "x": -8, "y": -10, "tick": 85}
+,
+  {"unique_id": 45, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 9, "y": -8, "tick": 85}
+,
+  {"unique_id": 9, "state": "IA", "neighbor_count": 2, "masked": false, "home": false, "x": 6, "y": -6, "tick": 85}
+,
+  {"unique_id": 44, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 0, "y": -5, "tick": 85}
+,
+  {"unique_id": 92, "state": "IA", "neighbor_count": 3, "masked": false, "home": false, "x": -2, "y": 4, "tick": 85}
+,
+  {"unique_id": 81, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": 6, "tick": 85}
+,
+  {"unique_id": 80, "state": "IS", "neighbor_count": 13, "masked": true, "home": true, "x": -7, "y": -7, "tick": 85}
+,
+  {"unique_id": 66, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": -4, "y": 9, "tick": 85}
+,
+  {"unique_id": 48, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 1, "y": -1, "tick": 85}
+,
+  {"unique_id": 63, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 2, "y": 8, "tick": 85}
+,
+  {"unique_id": 46, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -6, "y": 9, "tick": 85}
+,
+  {"unique_id": 33, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 6, "y": 7, "tick": 85}
+,
+  {"unique_id": 10, "state": "IA", "neighbor_count": 2, "masked": false, "home": false, "x": 2, "y": -5, "tick": 85}
+,
+  {"unique_id": 38, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 0, "y": -7, "tick": 85}
+,
+  {"unique_id": 87, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -2, "y": 6, "tick": 85}
+,
+  {"unique_id": 54, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -4, "y": 9, "tick": 85}
+,
+  {"unique_id": 88, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -6, "y": -6, "tick": 85}
+,
+  {"unique_id": 59, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": -2, "y": 3, "tick": 85}
+,
+  {"unique_id": 85, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 6, "y": 3, "tick": 85}
+,
+  {"unique_id": 24, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": -9, "y": -3, "tick": 85}
+,
+  {"unique_id": 35, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": 0, "tick": 85}
+,
+  {"unique_id": 6, "state": "IS", "neighbor_count": 4, "masked": true, "home": true, "x": -6, "y": -10, "tick": 85}
+,
+  {"unique_id": 21, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -9, "y": 0, "tick": 85}
+,
+  {"unique_id": 84, "state": "IS", "neighbor_count": 8, "masked": true, "home": true, "x": -7, "y": -8, "tick": 85}
+,
+  {"unique_id": 74, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": -6, "y": 4, "tick": 85}
+,
+  {"unique_id": 91, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 7, "y": -1, "tick": 85}
+,
+  {"unique_id": 52, "state": "IS", "neighbor_count": 0, "masked": false, "home": false, "x": -6, "y": -3, "tick": 85}
+,
+  {"unique_id": 30, "state": "IA", "neighbor_count": 2, "masked": false, "home": false, "x": 1, "y": -7, "tick": 85}
+,
+  {"unique_id": 75, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 7, "y": -6, "tick": 85}
+,
+  {"unique_id": 97, "state": "IS", "neighbor_count": 9, "masked": true, "home": true, "x": -8, "y": -6, "tick": 85}
+,
+  {"unique_id": 49, "state": "IS", "neighbor_count": 5, "masked": true, "home": true, "x": -6, "y": -9, "tick": 85}
+,
+  {"unique_id": 50, "state": "IS", "neighbor_count": 8, "masked": true, "home": true, "x": -7, "y": -8, "tick": 85}
+,
+  {"unique_id": 3, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 7, "y": -5, "tick": 85}
+,
+  {"unique_id": 41, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -3, "y": 3, "tick": 85}
+,
+  {"unique_id": 70, "state": "IA", "neighbor_count": 3, "masked": false, "home": false, "x": -6, "y": 10, "tick": 85}
+,
+  {"unique_id": 16, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": 10, "y": 9, "tick": 85}
+,
+  {"unique_id": 36, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -6, "tick": 85}
+,
+  {"unique_id": 95, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -9, "y": -6, "tick": 85}
+,
+  {"unique_id": 29, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": -1, "y": -10, "tick": 85}
+,
+  {"unique_id": 94, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -8, "y": -8, "tick": 85}
+,
+  {"unique_id": 73, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -10, "y": 0, "tick": 85}
+,
+  {"unique_id": 98, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 6, "y": 10, "tick": 85}
+,
+  {"unique_id": 93, "state": "IS", "neighbor_count": 3, "masked": false, "home": true, "x": -5, "y": -10, "tick": 85}
+,
+  {"unique_id": 37, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -4, "tick": 85}
+,
+  {"unique_id": 65, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -7, "tick": 85}
+,
+  {"unique_id": 60, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 0, "y": 5, "tick": 85}
+,
+  {"unique_id": 57, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 6, "y": 3, "tick": 85}
+,
+  {"unique_id": 7, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 3, "y": 7, "tick": 85}
+,
+  {"unique_id": 47, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 3, "y": 1, "tick": 85}
+,
+  {"unique_id": 4, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -9, "y": -6, "tick": 85}
+,
+  {"unique_id": 27, "state": "IS", "neighbor_count": 7, "masked": true, "home": true, "x": -7, "y": -9, "tick": 85}
+,
+  {"unique_id": 20, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -6, "y": -6, "tick": 85}
+,
+  {"unique_id": 26, "state": "IS", "neighbor_count": 9, "masked": true, "home": true, "x": -6, "y": -7, "tick": 85}
+,
+  {"unique_id": 34, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -4, "y": 8, "tick": 85}
+,
+  {"unique_id": 31, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 7, "y": 3, "tick": 85}
+,
+  {"unique_id": 69, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -8, "y": -8, "tick": 85}
+,
+  {"unique_id": 14, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 6, "y": -6, "tick": 85}
+,
+  {"unique_id": 40, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": 6, "y": 7, "tick": 85}
+,
+  {"unique_id": 25, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 4, "y": -1, "tick": 85}
+,
+  {"unique_id": 13, "state": "IS", "neighbor_count": 8, "masked": true, "home": true, "x": -7, "y": -6, "tick": 85}
+,
+  {"unique_id": 83, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": -8, "y": 2, "tick": 85}
+,
+  {"unique_id": 18, "state": "IS", "neighbor_count": 11, "masked": true, "home": true, "x": -8, "y": -7, "tick": 85}
+,
+  {"unique_id": 77, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": -6, "y": 0, "tick": 85}
+,
+  {"unique_id": 2, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -1, "y": -8, "tick": 85}
+,
+  {"unique_id": 53, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 3, "y": -5, "tick": 85}
+,
+  {"unique_id": 72, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 1, "y": 10, "tick": 85}
+,
+  {"unique_id": 5, "state": "IS", "neighbor_count": 4, "masked": true, "home": true, "x": -10, "y": -8, "tick": 85}
+,
+  {"unique_id": 64, "state": "IA", "neighbor_count": 0, "masked": false, "home": false, "x": 1, "y": 3, "tick": 85}
+,
+  {"unique_id": 61, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 9, "y": -1, "tick": 85}
+,
+  {"unique_id": 68, "state": "IA", "neighbor_count": 5, "masked": true, "home": false, "x": 10, "y": -8, "tick": 85}
+,
+  {"unique_id": 12, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 1, "y": -10, "tick": 85}
+,
+  {"unique_id": 67, "state": "IS", "neighbor_count": 8, "masked": true, "home": true, "x": -7, "y": -6, "tick": 85}
+,
+  {"unique_id": 15, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 3, "y": 0, "tick": 85}
+,
+  {"unique_id": 22, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 10, "y": 7, "tick": 85}
+,
+  {"unique_id": 56, "state": "IS", "neighbor_count": 6, "masked": true, "home": true, "x": -8, "y": -5, "tick": 85}
+,
+  {"unique_id": 28, "state": "R", "neighbor_count": 4, "masked": true, "home": false, "x": 10, "y": -9, "tick": 85}
+,
+  {"unique_id": 86, "state": "IS", "neighbor_count": 3, "masked": false, "home": true, "x": -5, "y": -6, "tick": 85}
+,
+  {"unique_id": 51, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 4, "y": 8, "tick": 85}
+,
+  {"unique_id": 17, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 7, "y": -9, "tick": 85}
+,
+  {"unique_id": 76, "state": "IS", "neighbor_count": 5, "masked": true, "home": true, "x": -10, "y": -7, "tick": 85}
+,
+  {"unique_id": 99, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 3, "y": 5, "tick": 85}
+,
+  {"unique_id": 42, "state": "IS", "neighbor_count": 11, "masked": true, "home": true, "x": -8, "y": -7, "tick": 85}
+,
+  {"unique_id": 58, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 4, "y": 4, "tick": 85}
+,
+  {"unique_id": 55, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 7, "y": -9, "tick": 85}
+,
+  {"unique_id": 78, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 6, "y": 5, "tick": 85}
+,
+  {"unique_id": 89, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 9, "y": -1, "tick": 85}
+,
+  {"unique_id": 11, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": -6, "y": 2, "tick": 85}
+,
+  {"unique_id": 82, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -1, "tick": 85}
+]

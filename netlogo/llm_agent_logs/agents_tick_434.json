@@ -1,201 +1,101 @@
 [
-  {"unique_id": 60, "state": "R", "masked": false, "home": false, "x": -8, "y": 9, "tick": 434}
+  {"unique_id": 2, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 8, "y": 1, "tick": 434}
 ,
-  {"unique_id": 16, "state": "R", "masked": false, "home": false, "x": -9, "y": -5, "tick": 434}
+  {"unique_id": 28, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 5, "y": 6, "tick": 434}
 ,
-  {"unique_id": 49, "state": "IS", "masked": false, "home": true, "x": -14, "y": -13, "tick": 434}
+  {"unique_id": 22, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -4, "y": 8, "tick": 434}
 ,
-  {"unique_id": 69, "state": "R", "masked": false, "home": false, "x": 14, "y": 11, "tick": 434}
+  {"unique_id": 44, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 7, "y": -1, "tick": 434}
 ,
-  {"unique_id": 91, "state": "R", "masked": false, "home": false, "x": 0, "y": 15, "tick": 434}
+  {"unique_id": 16, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 5, "y": 2, "tick": 434}
 ,
-  {"unique_id": 84, "state": "R", "masked": false, "home": false, "x": 0, "y": 11, "tick": 434}
+  {"unique_id": 29, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 7, "y": 3, "tick": 434}
 ,
-  {"unique_id": 17, "state": "R", "masked": false, "home": false, "x": 3, "y": 16, "tick": 434}
+  {"unique_id": 23, "state": "R", "neighbor_count": 4, "masked": true, "home": false, "x": 1, "y": 3, "tick": 434}
 ,
-  {"unique_id": 28, "state": "R", "masked": false, "home": false, "x": -6, "y": -8, "tick": 434}
+  {"unique_id": 45, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 8, "y": 6, "tick": 434}
 ,
-  {"unique_id": 46, "state": "R", "masked": false, "home": false, "x": -4, "y": 15, "tick": 434}
+  {"unique_id": 33, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 2, "y": -6, "tick": 434}
 ,
-  {"unique_id": 71, "state": "R", "masked": false, "home": false, "x": -6, "y": 8, "tick": 434}
+  {"unique_id": 36, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -1, "y": -8, "tick": 434}
 ,
-  {"unique_id": 35, "state": "R", "masked": false, "home": false, "x": -13, "y": 0, "tick": 434}
+  {"unique_id": 6, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 6, "y": -3, "tick": 434}
 ,
-  {"unique_id": 59, "state": "R", "masked": false, "home": false, "x": 2, "y": 14, "tick": 434}
+  {"unique_id": 24, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": -5, "y": 5, "tick": 434}
 ,
-  {"unique_id": 36, "state": "R", "masked": false, "home": false, "x": 10, "y": 15, "tick": 434}
+  {"unique_id": 7, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 0, "y": 0, "tick": 434}
 ,
-  {"unique_id": 55, "state": "R", "masked": false, "home": false, "x": -12, "y": 5, "tick": 434}
+  {"unique_id": 32, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 3, "y": 4, "tick": 434}
 ,
-  {"unique_id": 4, "state": "R", "masked": false, "home": false, "x": 16, "y": 8, "tick": 434}
+  {"unique_id": 15, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": -2, "y": -2, "tick": 434}
 ,
-  {"unique_id": 67, "state": "R", "masked": false, "home": false, "x": -5, "y": 9, "tick": 434}
+  {"unique_id": 49, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 4, "y": -3, "tick": 434}
 ,
-  {"unique_id": 26, "state": "R", "masked": false, "home": false, "x": 7, "y": -1, "tick": 434}
+  {"unique_id": 42, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 6, "y": -8, "tick": 434}
 ,
-  {"unique_id": 53, "state": "R", "masked": false, "home": false, "x": 12, "y": -10, "tick": 434}
+  {"unique_id": 43, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 3, "y": 8, "tick": 434}
 ,
-  {"unique_id": 85, "state": "R", "masked": false, "home": false, "x": -8, "y": 12, "tick": 434}
+  {"unique_id": 48, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -7, "tick": 434}
 ,
-  {"unique_id": 15, "state": "R", "masked": false, "home": false, "x": 14, "y": 11, "tick": 434}
+  {"unique_id": 19, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 4, "y": -8, "tick": 434}
 ,
-  {"unique_id": 86, "state": "R", "masked": false, "home": false, "x": 2, "y": 7, "tick": 434}
+  {"unique_id": 40, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -1, "tick": 434}
 ,
-  {"unique_id": 57, "state": "R", "masked": false, "home": false, "x": -14, "y": 8, "tick": 434}
+  {"unique_id": 38, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": -2, "y": 3, "tick": 434}
 ,
-  {"unique_id": 33, "state": "R", "masked": false, "home": false, "x": -9, "y": 1, "tick": 434}
+  {"unique_id": 8, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 8, "y": -3, "tick": 434}
 ,
-  {"unique_id": 52, "state": "R", "masked": false, "home": false, "x": -7, "y": 7, "tick": 434}
+  {"unique_id": 14, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -7, "y": 0, "tick": 434}
 ,
-  {"unique_id": 93, "state": "R", "masked": false, "home": false, "x": -2, "y": 7, "tick": 434}
+  {"unique_id": 10, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": -3, "y": 1, "tick": 434}
 ,
-  {"unique_id": 22, "state": "R", "masked": false, "home": false, "x": -8, "y": -6, "tick": 434}
+  {"unique_id": 1, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 1, "y": 6, "tick": 434}
 ,
-  {"unique_id": 78, "state": "R", "masked": false, "home": false, "x": -4, "y": 12, "tick": 434}
+  {"unique_id": 0, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 0, "y": 3, "tick": 434}
 ,
-  {"unique_id": 9, "state": "R", "masked": false, "home": false, "x": -14, "y": 16, "tick": 434}
+  {"unique_id": 11, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -8, "y": 7, "tick": 434}
 ,
-  {"unique_id": 30, "state": "R", "masked": false, "home": false, "x": 13, "y": 9, "tick": 434}
+  {"unique_id": 41, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": -5, "tick": 434}
 ,
-  {"unique_id": 19, "state": "R", "masked": false, "home": false, "x": 9, "y": 1, "tick": 434}
+  {"unique_id": 34, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": 6, "y": 0, "tick": 434}
 ,
-  {"unique_id": 10, "state": "R", "masked": false, "home": false, "x": 2, "y": 9, "tick": 434}
+  {"unique_id": 35, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 8, "y": 4, "tick": 434}
 ,
-  {"unique_id": 40, "state": "R", "masked": false, "home": false, "x": -13, "y": 5, "tick": 434}
+  {"unique_id": 30, "state": "IS", "neighbor_count": 2, "masked": false, "home": false, "x": -6, "y": -1, "tick": 434}
 ,
-  {"unique_id": 12, "state": "R", "masked": false, "home": false, "x": -3, "y": 16, "tick": 434}
+  {"unique_id": 27, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -5, "y": -1, "tick": 434}
 ,
-  {"unique_id": 89, "state": "R", "masked": false, "home": false, "x": 12, "y": 1, "tick": 434}
+  {"unique_id": 26, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 2, "y": 4, "tick": 434}
 ,
-  {"unique_id": 6, "state": "R", "masked": false, "home": false, "x": -10, "y": -3, "tick": 434}
+  {"unique_id": 25, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 3, "y": -8, "tick": 434}
 ,
-  {"unique_id": 70, "state": "R", "masked": false, "home": false, "x": -9, "y": -4, "tick": 434}
+  {"unique_id": 46, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -1, "y": -7, "tick": 434}
 ,
-  {"unique_id": 58, "state": "R", "masked": false, "home": false, "x": 6, "y": -7, "tick": 434}
+  {"unique_id": 47, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 0, "y": 4, "tick": 434}
 ,
-  {"unique_id": 11, "state": "R", "masked": false, "home": false, "x": -12, "y": 2, "tick": 434}
+  {"unique_id": 5, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -8, "y": 3, "tick": 434}
 ,
-  {"unique_id": 75, "state": "R", "masked": false, "home": false, "x": 12, "y": 11, "tick": 434}
+  {"unique_id": 13, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": 3, "y": 5, "tick": 434}
 ,
-  {"unique_id": 41, "state": "R", "masked": false, "home": false, "x": -6, "y": 16, "tick": 434}
+  {"unique_id": 3, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -3, "y": 7, "tick": 434}
 ,
-  {"unique_id": 27, "state": "R", "masked": false, "home": false, "x": 9, "y": -16, "tick": 434}
+  {"unique_id": 18, "state": "R", "neighbor_count": 0, "masked": false, "home": false, "x": 4, "y": -6, "tick": 434}
 ,
-  {"unique_id": 1, "state": "IA", "masked": false, "home": false, "x": 13, "y": 15, "tick": 434}
+  {"unique_id": 9, "state": "R", "neighbor_count": 1, "masked": false, "home": false, "x": -1, "y": 5, "tick": 434}
 ,
-  {"unique_id": 79, "state": "R", "masked": false, "home": false, "x": 9, "y": 8, "tick": 434}
+  {"unique_id": 37, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -1, "y": -2, "tick": 434}
 ,
-  {"unique_id": 87, "state": "R", "masked": false, "home": false, "x": 12, "y": -13, "tick": 434}
+  {"unique_id": 20, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 0, "y": 2, "tick": 434}
 ,
-  {"unique_id": 24, "state": "R", "masked": false, "home": false, "x": -3, "y": -11, "tick": 434}
+  {"unique_id": 31, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 2, "y": -8, "tick": 434}
 ,
-  {"unique_id": 8, "state": "R", "masked": false, "home": false, "x": -7, "y": 2, "tick": 434}
+  {"unique_id": 17, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -8, "y": 1, "tick": 434}
 ,
-  {"unique_id": 2, "state": "R", "masked": false, "home": false, "x": 1, "y": -12, "tick": 434}
+  {"unique_id": 4, "state": "R", "neighbor_count": 3, "masked": false, "home": false, "x": -1, "y": -1, "tick": 434}
 ,
-  {"unique_id": 65, "state": "R", "masked": false, "home": false, "x": -1, "y": -14, "tick": 434}
+  {"unique_id": 21, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 5, "y": -3, "tick": 434}
 ,
-  {"unique_id": 13, "state": "R", "masked": false, "home": false, "x": -10, "y": -6, "tick": 434}
+  {"unique_id": 12, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": 2, "y": 6, "tick": 434}
 ,
-  {"unique_id": 5, "state": "R", "masked": false, "home": false, "x": 4, "y": -16, "tick": 434}
-,
-  {"unique_id": 45, "state": "R", "masked": false, "home": false, "x": 7, "y": -16, "tick": 434}
-,
-  {"unique_id": 97, "state": "R", "masked": false, "home": false, "x": -8, "y": -14, "tick": 434}
-,
-  {"unique_id": 32, "state": "R", "masked": false, "home": false, "x": 10, "y": 2, "tick": 434}
-,
-  {"unique_id": 21, "state": "R", "masked": false, "home": false, "x": 2, "y": 4, "tick": 434}
-,
-  {"unique_id": 23, "state": "R", "masked": false, "home": false, "x": -11, "y": -4, "tick": 434}
-,
-  {"unique_id": 25, "state": "R", "masked": false, "home": false, "x": 7, "y": 8, "tick": 434}
-,
-  {"unique_id": 92, "state": "R", "masked": false, "home": false, "x": 13, "y": -6, "tick": 434}
-,
-  {"unique_id": 68, "state": "R", "masked": false, "home": false, "x": 9, "y": -12, "tick": 434}
-,
-  {"unique_id": 98, "state": "R", "masked": false, "home": false, "x": 9, "y": -7, "tick": 434}
-,
-  {"unique_id": 0, "state": "R", "masked": false, "home": false, "x": 3, "y": 1, "tick": 434}
-,
-  {"unique_id": 96, "state": "R", "masked": false, "home": false, "x": -7, "y": -9, "tick": 434}
-,
-  {"unique_id": 47, "state": "R", "masked": false, "home": false, "x": -10, "y": 12, "tick": 434}
-,
-  {"unique_id": 34, "state": "R", "masked": false, "home": false, "x": -15, "y": 5, "tick": 434}
-,
-  {"unique_id": 38, "state": "R", "masked": false, "home": false, "x": 6, "y": -11, "tick": 434}
-,
-  {"unique_id": 99, "state": "R", "masked": false, "home": false, "x": -7, "y": 1, "tick": 434}
-,
-  {"unique_id": 20, "state": "R", "masked": false, "home": false, "x": -11, "y": 10, "tick": 434}
-,
-  {"unique_id": 88, "state": "R", "masked": false, "home": false, "x": -8, "y": -7, "tick": 434}
-,
-  {"unique_id": 90, "state": "R", "masked": false, "home": false, "x": -12, "y": 16, "tick": 434}
-,
-  {"unique_id": 39, "state": "R", "masked": false, "home": false, "x": 11, "y": 11, "tick": 434}
-,
-  {"unique_id": 62, "state": "R", "masked": false, "home": false, "x": -16, "y": 10, "tick": 434}
-,
-  {"unique_id": 72, "state": "R", "masked": false, "home": false, "x": -10, "y": 1, "tick": 434}
-,
-  {"unique_id": 48, "state": "R", "masked": false, "home": false, "x": 12, "y": 9, "tick": 434}
-,
-  {"unique_id": 64, "state": "R", "masked": false, "home": false, "x": 15, "y": 1, "tick": 434}
-,
-  {"unique_id": 50, "state": "R", "masked": false, "home": false, "x": -10, "y": 11, "tick": 434}
-,
-  {"unique_id": 81, "state": "R", "masked": false, "home": false, "x": 14, "y": -12, "tick": 434}
-,
-  {"unique_id": 7, "state": "R", "masked": false, "home": false, "x": -4, "y": -6, "tick": 434}
-,
-  {"unique_id": 76, "state": "R", "masked": false, "home": false, "x": -16, "y": 12, "tick": 434}
-,
-  {"unique_id": 31, "state": "R", "masked": false, "home": false, "x": -4, "y": -2, "tick": 434}
-,
-  {"unique_id": 18, "state": "R", "masked": false, "home": false, "x": 8, "y": -9, "tick": 434}
-,
-  {"unique_id": 37, "state": "R", "masked": false, "home": false, "x": 14, "y": 16, "tick": 434}
-,
-  {"unique_id": 66, "state": "R", "masked": false, "home": false, "x": 8, "y": 12, "tick": 434}
-,
-  {"unique_id": 3, "state": "R", "masked": false, "home": false, "x": 14, "y": -9, "tick": 434}
-,
-  {"unique_id": 51, "state": "R", "masked": false, "home": false, "x": -2, "y": 11, "tick": 434}
-,
-  {"unique_id": 95, "state": "R", "masked": false, "home": false, "x": 14, "y": -12, "tick": 434}
-,
-  {"unique_id": 61, "state": "R", "masked": false, "home": false, "x": 6, "y": -5, "tick": 434}
-,
-  {"unique_id": 14, "state": "R", "masked": false, "home": false, "x": -4, "y": -10, "tick": 434}
-,
-  {"unique_id": 74, "state": "R", "masked": false, "home": false, "x": -4, "y": 3, "tick": 434}
-,
-  {"unique_id": 94, "state": "R", "masked": false, "home": false, "x": 13, "y": 2, "tick": 434}
-,
-  {"unique_id": 29, "state": "R", "masked": false, "home": false, "x": -3, "y": 2, "tick": 434}
-,
-  {"unique_id": 44, "state": "R", "masked": false, "home": false, "x": 7, "y": -3, "tick": 434}
-,
-  {"unique_id": 54, "state": "R", "masked": false, "home": false, "x": -5, "y": -7, "tick": 434}
-,
-  {"unique_id": 83, "state": "R", "masked": false, "home": false, "x": 16, "y": 0, "tick": 434}
-,
-  {"unique_id": 42, "state": "R", "masked": false, "home": false, "x": -3, "y": 5, "tick": 434}
-,
-  {"unique_id": 43, "state": "R", "masked": false, "home": false, "x": 1, "y": -2, "tick": 434}
-,
-  {"unique_id": 80, "state": "R", "masked": false, "home": false, "x": -5, "y": 11, "tick": 434}
-,
-  {"unique_id": 82, "state": "R", "masked": false, "home": false, "x": 14, "y": -4, "tick": 434}
-,
-  {"unique_id": 56, "state": "R", "masked": false, "home": false, "x": -6, "y": -3, "tick": 434}
-,
-  {"unique_id": 77, "state": "R", "masked": false, "home": false, "x": -6, "y": 11, "tick": 434}
-,
-  {"unique_id": 73, "state": "R", "masked": false, "home": false, "x": 0, "y": 5, "tick": 434}
-,
-  {"unique_id": 63, "state": "R", "masked": false, "home": false, "x": -16, "y": 8, "tick": 434}
+  {"unique_id": 39, "state": "R", "neighbor_count": 2, "masked": false, "home": false, "x": -3, "y": -6, "tick": 434}
 ]

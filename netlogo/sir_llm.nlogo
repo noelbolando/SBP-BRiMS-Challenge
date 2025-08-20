@@ -46,7 +46,7 @@ end
 
 to setup-home-zone
   ask patches [
-  set home? (pxcor <= min-pxcor + 7) and (pycor <= min-pycor + 7)
+  set home? (pxcor <= min-pxcor + 4) and (pycor <= min-pycor + 4)
   if home? [ set pcolor gray ]
 ]
 end
@@ -56,7 +56,7 @@ to setup-globals
   set recovery-probability 1
   set next-id 0
   set total-infections 0
-  set initial-infected 5
+  set initial-infected 2
   set r0 0
   set output-file (word "sir_tick_log_run_" new-seed ".csv")
   file-open output-file
@@ -65,7 +65,7 @@ to setup-globals
 end
 
 to setup-turtles
-  create-turtles 100 [
+  create-turtles 50 [
     let spawn-patch one-of patches with [not home?]   ;; to not spawn in home
     move-to spawn-patch
     set shape "person"
@@ -289,6 +289,7 @@ to export-llm-agent-data
       let masked [masked?] of agent
       let x [xcor] of agent
       let y [ycor] of agent
+      let neighbor-count count turtles-on ([neighbors] of agent)
 
       ;; Safely get home? from patch under agent
       let hx false
@@ -300,6 +301,7 @@ to export-llm-agent-data
         "  {"
         "\"unique_id\": " uid ", "
         "\"state\": \"" agent-state "\", "
+        "\"neighbor_count\": " neighbor-count ", "
         "\"masked\": " masked ", "
         "\"home\": " hx ", "
         "\"x\": " x ", "
@@ -334,13 +336,13 @@ to-report count-recovered
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
-659
-10
-1301
-653
+664
+49
+1140
+526
 -1
 -1
-19.21212121212121
+27.53
 1
 10
 1
@@ -350,10 +352,10 @@ GRAPHICS-WINDOW
 1
 1
 1
--16
-16
--16
-16
+-8
+8
+-8
+8
 0
 0
 1
