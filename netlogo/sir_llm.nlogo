@@ -58,7 +58,7 @@ end
 
 to setup-globals
   set infection-chance 50          ;; 50% chance
-  set recovery-probability 1       ;; 1% chance
+  set recovery-probability 25      ;; 1% chance
   set next-id 0
   set total-infections 0
   set initial-infected 1
@@ -510,12 +510,6 @@ to setup-python
     "- Movement: 'move' or 'stay'"
     "- Masking: 'mask on' or 'mask off'"
     ""
-    "Rules:"
-    "- By default, you MUST 'move' every tick, unless you are symptomatically infected (IS) and currently in the home zone."
-    "- If you're symptomatic (IS) and NOT at home, move into the home zone immediately."
-    "- If you're recovered (R) and in the home zone, move out into the general grid."
-    "- You should choose 'mask on' if you have 2 or more neighbors. Otherwise, 'mask off' is acceptable."
-
     "Always output exactly two actions in this format:"
     "e.g., move, mask on or stay, mask off"
     "Do not include any explanation — just respond with the two actions, comma-separated."
@@ -530,6 +524,14 @@ to setup-python
     "- Position: ({agent['x']}, {agent['y']})"
     "- Neighbor Count: {agent['neighbor_count']}"
     "- Current Tick: {agent['tick']}"
+    ""
+    "Movement Rules:"
+    "- If your disease state is S, IA, or R, you must move every tick."
+    "- If your disease state is IS you must move into the home zone. You are a known risk to spreading the disease so you must quarantine at home."
+    "- If your disease state is IS you must stay in the home zone every tick. You are a known risk to spreading the disease so you must quarantine at home."
+    ""
+    "Masking Rules:"
+    "- You should choose 'mask on' if you have 2 or more neighbors. Otherwise, 'mask off' is acceptable."
     ""
     "Based on your current state and the system prompt, please output your actions:"
     "'''.strip()"
@@ -579,8 +581,8 @@ GRAPHICS-WINDOW
 1
 1
 0
-1
-1
+0
+0
 1
 -3
 3

@@ -44,17 +44,17 @@ end
 
 to setup-home-zone
   ask patches [
-  set home? (pxcor <= min-pxcor + 4) and (pycor <= min-pycor + 4)
+  set home? (pxcor <= min-pxcor + 2) and (pycor <= min-pycor + 2)
   if home? [ set pcolor gray ]
 ]
 end
 
 to setup-globals
   set infection-chance 50
-  set recovery-probability 1
+  set recovery-probability 25
   set next-id 0
   set total-infections 0
-  set initial-infected 2
+  set initial-infected 1
   set r0 0
   set output-file (word "sir_tick_log_run_" new-seed ".csv")
   file-open output-file
@@ -63,7 +63,7 @@ to setup-globals
 end
 
 to setup-turtles
-  create-turtles 50 [
+  create-turtles 10 [
     let spawn-patch one-of patches with [not home?]   ;; to not spawn in home
     move-to spawn-patch
     set shape "person"
@@ -284,24 +284,24 @@ end
 GRAPHICS-WINDOW
 659
 10
-1104
-456
+970
+322
 -1
 -1
-25.71
+43.33
 1
 10
 1
 1
 1
 0
+0
+0
 1
-1
-1
--8
-8
--8
-8
+-3
+3
+-3
+3
 0
 0
 1
