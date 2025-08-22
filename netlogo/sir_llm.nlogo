@@ -58,7 +58,7 @@ end
 
 to setup-globals
   set infection-chance 50          ;; 50% chance
-  set recovery-probability 25      ;; 1% chance
+  set recovery-probability 10      ;; 1% chance
   set next-id 0
   set total-infections 0
   set initial-infected 1
