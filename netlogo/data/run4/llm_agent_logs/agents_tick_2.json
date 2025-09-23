@@ -1,0 +1,21 @@
+[
+  {"unique_id": 3, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 3, "y": -3, "tick": 2}
+,
+  {"unique_id": 8, "state": "IS", "neighbor_count": 2, "masked": false, "home": false, "x": 2, "y": -2, "tick": 2}
+,
+  {"unique_id": 9, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": 1, "y": 2, "tick": 2}
+,
+  {"unique_id": 6, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": -2, "y": 1, "tick": 2}
+,
+  {"unique_id": 7, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": -2, "y": 0, "tick": 2}
+,
+  {"unique_id": 1, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": -2, "y": 2, "tick": 2}
+,
+  {"unique_id": 5, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": 1, "y": 1, "tick": 2}
+,
+  {"unique_id": 2, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": -2, "y": 1, "tick": 2}
+,
+  {"unique_id": 0, "state": "S", "neighbor_count": 2, "masked": false, "home": false, "x": 0, "y": 1, "tick": 2}
+,
+  {"unique_id": 4, "state": "IA", "neighbor_count": 1, "masked": false, "home": false, "x": 3, "y": -3, "tick": 2}
+]

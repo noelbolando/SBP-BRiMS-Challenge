@@ -1,0 +1,10 @@
+{"unique_id": 3, "tick": 7, "action": "move, mask on"}
+{"unique_id": 5, "tick": 7, "action": "move, mask on"}
+{"unique_id": 6, "tick": 7, "action": "move, mask on"}
+{"unique_id": 2, "tick": 7, "action": "stay, mask on"}
+{"unique_id": 0, "tick": 7, "action": "move, mask on"}
+{"unique_id": 1, "tick": 7, "action": "stay, mask off"}
+{"unique_id": 9, "tick": 7, "action": "stay, mask off"}
+{"unique_id": 4, "tick": 7, "action": "stay, mask off"}
+{"unique_id": 8, "tick": 7, "action": "stay, mask off"}
+{"unique_id": 7, "tick": 7, "action": "move, mask off"}
