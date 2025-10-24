@@ -33,12 +33,6 @@ patches-own [
 
 to setup
   clear-all
-  if master-output-file = 0 [
-    set master-output-file "sir_master_log.csv"
-    file-open master-output-file
-    file-print "run_id, tick, unique_id, state, infection_start, infector_id, num_infected, masked"
-    file-close
-  ]
   random-seed new-seed
   setup-home-zone
   setup-globals
@@ -58,6 +52,15 @@ to setup-home-zone
   if home? [ set pcolor gray ]
 ]
 end
+
+to setup-output-file
+    if master-output-file = 0 [
+    set master-output-file "sir_master_log.csv"
+    file-open master-output-file
+    file-print "run_id, tick, unique_id, state, infection_start, infector_id, num_infected, masked"
+    file-close
+  ]
+
 
 to setup-globals
   set infection-chance 50
@@ -126,6 +129,7 @@ to run-multiple-simulations [num-runs]
   set master-output-file "sir_master_log.csv"
 
   ;; initialize master CSV with header
+  setup-output-file
   file-open master-output-file
   file-close
 
