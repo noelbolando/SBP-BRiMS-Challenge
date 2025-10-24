@@ -1,5 +1,6 @@
 ;; L-SIR NetLogo Model
 ;; Author: Noel C. Boland - 2025
+;;
 
 globals [
   infection-chance         ;; % chance of transmission upon contact
