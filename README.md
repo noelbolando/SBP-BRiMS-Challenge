@@ -1,3 +1,7 @@
-[SBP-BRiMS 2025 Challenge Notes](https://anl.app.box.com/notes/1953102558728)
+## SBP-BRiMS Challenge Submission
 
-[NetLogo SIR Model Notes](https://anl.app.box.com/notes/1959398901525)
+<img width="954" height="531" alt="Screenshot 2025-09-06 at 4 44 59 PM" src="https://github.com/user-attachments/assets/21c50ae2-fd64-41af-b0c9-ac84688051e6" />
+
+This study examines the use of large language models (LLMs) in multi-agent-based models (MABMs) to simulate epidemic simulations. Agent-based modeling (ABM) is a bottom-up computational approach used for understanding the structure of collective behaviors based on simple agent-based rules. Traditionally, these rules outlined individual agent-based behavioral, and interactions drive emergent patterns at a larger length scale. Traditionally, an agent is assigned hard-coded behaviors and interactions which enables it to interact with other agents and its environment. 
+
+Taking this simple concept, we explore the application of LLMs in MASs, leveraging natural-language processes (NLPs) to understand the influence of LLM-driven decisions on agent behaviors, interactions, and global emergence patterns. This approach replaces the hard-coded programs of agents with LLM-driven prompts. These structured, rule-based prompts allow us to delegate agent decisions to the LLM in a natural-language format thus, ushering in a new paradigm for ABM: Agentic AI. This shift, although critically nuanced, offers transparent guidance in agent decision-making processes and empowers flexible prompt-based approaches for understanding agent behavior. Figure 2 depicts a generalized framework for this system where agent behaviors and interactions are dictated by LLM-driven decisions. 
